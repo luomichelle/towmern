@@ -1,13 +1,54 @@
-# WIP
+# hangperson
 
-## Setup
+Parts
+Hangperson game
+Serialization (deserialization)
+Express API
+React components
+Mongo DB
+User log-on
 
-## Deployment (Heroku)
 
-Set `NPM_CONFIG_PRODUCTION=false on heroku`: 
+Hangperson
+Data Object for the game
+serialize()
+deserialize( <game> )
+constuctor(<word>)
+isGameOver()
+isWordGuessed()
+guess(<letter>)
 
-```
-heroku config:set NPM_CONFIG_PRODUCTION=false --app your-app-name
-```
 
-Without this devDependencies won't be installed on deployment, and your build will break.
+Serialization
+Word to guess
+Length of word to guess
+Guessed letters
+Guesses remaining
+Max guesses
+Express API
+/hangperson
+POST /new
+GET /current
+POST /guess
+letter=<letter>
+
+
+React
+Game
+Progress Visualization
+Guessed/unguessed letters
+Input
+
+
+Mongo
+Collection of games
+Serialized games
+Later collection of users
+References to games or games reference users (or both?)
+
+
+User Log on
+/users
+POST /create
+POST /login
+DELETE /session

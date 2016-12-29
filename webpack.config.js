@@ -1,34 +1,26 @@
-var webpack       = require('webpack');
-var getConfig     = require('hjs-webpack');
-var path          = require('path');
+module.exports = {
+  
+  // This code will be compiled 
+  entry: "./app/app.js",
 
-var config = getConfig({
-  in: 'src/app.js',
-  out: 'public',
-  clearBeforeBuild: true,
-  // Use devServer.proxy to specify proxies
-  devServer: {
-    proxy: {
-      context: "/api",
-      options: {
-        target: "http://localhost:8080"
+  // Then output into this file
+  output: {
+    filename: "public/bundle.js"
+  },
+
+  // This will be what we do
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel',
+        query: {
+          // These are the specific transformations we'll be using. 
+          presets: ['react', 'es2015']
+        }
       }
-    }
-  }
-});
-
-config.resolve.extensions = ['', '.js', '.jsx'];
-config.resolve.root = [path.resolve(__dirname, 'src')];
-config.sassLoader = { includePaths: [path.resolve(__dirname, 'src', 'theme')] };
-
-switch(process.env.npm_lifecycle_event) {
-  case 'build': {
-    config.devtool = 'cheap-module-source-map';
+    ]
   }
 
-  default: {
-    config.devtool = 'source-map';
-  }
 }
-
-module.exports = config;
